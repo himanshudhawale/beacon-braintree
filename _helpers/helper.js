@@ -124,7 +124,7 @@ var result =  [
 ]
 
 
-router.get('/abc',  async(req,res)=>{
+router.get('/add',  async(req,res)=>{
     for(let  i=0; i < result.length;i++)
     {
 

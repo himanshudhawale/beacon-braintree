@@ -15,6 +15,7 @@ function jwt() {
             '/brain/token',
             '/brain/create_customer',
             '/brain/sandbox',
+            '/_helpers/add',
 	    '/'
         ]
     });
