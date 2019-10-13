@@ -148,7 +148,7 @@ router.get('/abc',  async(req,res)=>{
                 region : result[i].region,
                 //photo : "dsdsd",
                 price : result[i].price,
-                photo : base64_encode(""+result[i].photo),
+                photo : base64_encode("../support/"+result[i].photo),
                 });
 
                 product.save();
