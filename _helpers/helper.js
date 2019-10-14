@@ -1,6 +1,8 @@
 const router = require('express').Router();
 const productModel = require('../users/product.model');
 var fs = require('fs');
+const db = require('./db');
+const Product = db.Product;
 const CircularJSON = require('circular-json');
 var result =  [
 	{
@@ -130,7 +132,7 @@ router.get('/add',  async(req,res)=>{
     {
         if(result[i].photo==null)
         {
-            const product =  new productModel({
+            const product =  new Product({
                 name : result[i].name,
                 discount : result[i].discount,
                 region : result[i].region,
@@ -140,7 +142,7 @@ router.get('/add',  async(req,res)=>{
                 product.save();
         }
         else{
-            const product =  new productModel({
+            const product =  new Product({
                 name : result[i].name,
                 discount : result[i].discount,
                 region : result[i].region,
@@ -162,7 +164,7 @@ function base64_encode(file) {
 
 
 router.get('/getProducts', async(req,res)=>{
-	const productList = productModel.find({region : req.body.region});
+	const productList = Product.find({region : req.body.region});
 	// console.log(productList);
 	const json = JSON.stringify(productList);
 	if(productList!=null)
