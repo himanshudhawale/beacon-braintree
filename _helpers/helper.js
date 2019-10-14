@@ -164,7 +164,7 @@ function base64_encode(file) {
 
 
 router.get('/getProducts', async(req,res)=>{
-	const productList = productModel.find({region : req.body.region});
+	const productList = productModel.find({});
 
 	if(productList!=null)
 	{
