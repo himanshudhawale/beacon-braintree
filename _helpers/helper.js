@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const productModel = require('../users/product.model');
 var fs = require('fs');
+const CircularJSON = require('circular-json');
 var result =  [
 	{
         "discount": 10,
@@ -162,10 +163,11 @@ function base64_encode(file) {
 
 router.get('/getProducts', async(req,res)=>{
 	const productList = productModel.find({region : req.body.region});
-	console.log(productList);
+	// console.log(productList);
+	const json = JSON.stringify(productList);
 	if(productList!=null)
 	{
-		res.send(productList);
+		res.send(json);
 	}else {
 		res.send("Region is incorrect");
 	}
