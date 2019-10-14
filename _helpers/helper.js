@@ -127,14 +127,12 @@ var result =  [
 router.get('/add',  async(req,res)=>{
     for(let  i=0; i < result.length;i++)
     {
-
         if(result[i].photo==null)
         {
             const product =  new productModel({
                 name : result[i].name,
                 discount : result[i].discount,
                 region : result[i].region,
-                //photo : "dsdsd",
                 price : result[i].price,
                 photo : "No Image",
                 });
@@ -146,9 +144,8 @@ router.get('/add',  async(req,res)=>{
                 name : result[i].name,
                 discount : result[i].discount,
                 region : result[i].region,
-                //photo : "dsdsd",
                 price : result[i].price,
-                photo : base64_encode("../support/"+result[i].photo),
+                photo : base64_encode("home/ubuntu/beacon-braintree/support/"+result[i].photo),
                 });
 
                 product.save();
