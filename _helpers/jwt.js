@@ -17,6 +17,7 @@ function jwt() {
             '/brain/sandbox',
             '/support/add',
             '/support/getProducts',
+            '/support/getProductsByRegion',
 	    '/'
         ]
     });
