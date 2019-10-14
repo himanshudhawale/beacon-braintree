@@ -162,6 +162,7 @@ function base64_encode(file) {
 
 router.get('/getProducts', async(req,res)=>{
 	const productList = productModel.find({region : req.body.region});
+	console.log(productList);
 	if(productList!=null)
 	{
 		res.send(productList);
