@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const productModel = require('../users/product.model');
 var fs = require('fs');
-const db = require('./db');
+const db = require('./db1');
 const Product = db.Product;
 const CircularJSON = require('circular-json');
 var result =  [
@@ -165,7 +165,7 @@ function base64_encode(file) {
 
 router.get('/getProducts', async(req,res)=>{
 	const productList = Product.find({region : req.body.region});
-	
+
 	if(productList!=null)
 	{
 		res.send(productList);
