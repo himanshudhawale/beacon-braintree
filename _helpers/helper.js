@@ -136,7 +136,6 @@ router.get('/add',  async(req,res)=>{
                 price : result[i].price,
                 photo : "No Image",
                 });
-
                 product.save();
         }
         else{
@@ -147,7 +146,6 @@ router.get('/add',  async(req,res)=>{
                 price : result[i].price,
                 photo : base64_encode("/home/ubuntu/beacon-braintree/support/"+result[i].photo),
                 });
-
                 product.save();
 
         }
@@ -160,6 +158,17 @@ function base64_encode(file) {
     var bitmap = fs.readFileSync(file);
     return new Buffer(bitmap).toString('base64');
 }
+
+
+router.get('/getProducts', async(req,res)=>{
+	const productList = productModel.find({region : req.body.region});
+	if(productList!=null)
+	{
+		res.send(productList);
+	}else {
+		res.send("Region is incorrect");
+	}
+});
 
 
 module.exports = router;
