@@ -166,14 +166,25 @@ function base64_encode(file) {
 router.get('/getProducts', async(req,res)=>{
 	const productList = await Product.find({});
 
-console.log(productList);
 	if(productList!=null)
 	{
 		res.send(productList);
 	}else {
-		res.send("Region is incorrect");
+		res.send("No products found");
 	}
 });
+
+router.post('/getProductsByRegion', async(req,res)=>{
+	const productList = await Product.find({region : req.body.region});
+	if(productList!=null)
+	{
+		res.send(productList);
+	}else{
+		res.send("Region is incorrect");
+	}
+
+});
+
 
 
 module.exports = router;
