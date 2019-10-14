@@ -132,7 +132,7 @@ router.get('/add',  async(req,res)=>{
     {
         if(result[i].photo==null)
         {
-            const product =  new Product({
+            const product =  new productModel({
                 name : result[i].name,
                 discount : result[i].discount,
                 region : result[i].region,
@@ -142,7 +142,7 @@ router.get('/add',  async(req,res)=>{
                 product.save();
         }
         else{
-            const product =  new Product({
+            const product =  new productModel({
                 name : result[i].name,
                 discount : result[i].discount,
                 region : result[i].region,
