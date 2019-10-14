@@ -164,7 +164,7 @@ router.get('/getProducts', async(req,res)=>{
 	const productList = productModel.find({region : req.body.region});
 	if(productList!=null)
 	{
-		res.json(productList);
+		res.send(productList);
 	}else {
 		res.send("Region is incorrect");
 	}
