@@ -1,4 +1,4 @@
-﻿const config = require('config.json');
+const config = require('config.json');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const db = require('_helpers/db');
@@ -7,9 +7,9 @@ const braintree = require('braintree');
 var gateway = braintree.connect({
   environment: braintree.Environment.Sandbox,
   // Use your own credentials from the sandbox Control Panel here
-  merchantId: "REMOVED",
-  publicKey:  "REMOVED",
-  privateKey: "REMOVED"
+  merchantId: process.env.BRAINTREE_MERCHANT_ID,
+  publicKey:  process.env.BRAINTREE_PUBLIC_KEY,
+  privateKey: process.env.BRAINTREE_PRIVATE_KEY
 });
 
 
@@ -27,7 +27,7 @@ async function authenticate({ email, password }) {
     const user = await User.findOne({ email });
     if (user && bcrypt.compareSync(password, user.hash)) {
         const { hash, ...userWithoutHash } = user.toObject();
-        const token = jwt.sign({ sub: user.id }, config.secret);
+        const token = jwt.sign({ sub: user.id }, (process.env.JWT_SECRET || config.secret));
         return {
             ...userWithoutHash,
             token
